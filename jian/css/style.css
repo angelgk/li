@@ -1,0 +1,186 @@
+	html{
+		width: 100%;
+		font-size: 100px;
+	}
+	body{
+		background-image: url(../images/18.jpg);
+		background-size: 100% 100%;
+	}
+	.fl{
+		float: left;
+		margin-left: 2rem;
+	}
+	.fr{
+		float: right;
+		margin-right: 2rem;
+	}
+	.clear{
+		zoom: 1;
+	}
+	.clear:after{
+		content: '';
+		display: block;
+		height: 0;
+		overflow: hidden;
+		clear: both;
+	}
+	#nav{
+		width: 99%;
+		margin-left: 0.05rem;
+		height: 0.8rem;
+		line-height: 0.8rem;
+		padding-left: 0.5rem;
+		font-family: '微软雅黑';
+	}
+	#bir{
+		position: absolute;left: 0px;top: 0px;
+		transition:2s;
+	}
+	#nav li{
+		float: left;
+		margin-right: 20px;
+		font-size: 0.15rem;
+	}
+	#conten{
+		padding-top: 0.4rem;
+		margin-bottom: 0.4rem;
+		text-align: center;
+		margin: 0px auto;
+		width: 99%;
+		height: 3rem;
+		position: relative;
+		font-family: '微软雅黑';
+	}
+	#conten span{
+		font-size: 0.2rem;
+	}
+	#conten #name{
+		font-size: 0.5rem;
+		line-height:0.7rem;
+	}
+	#btn{
+		margin-top: 0.2rem;
+		font-size: 0.15rem;
+		width: 1rem;
+		height: 0.5rem;
+		color: #ccc 
+	}
+	#conten #liuyan{
+		width: 5rem;
+		display: inline-block;
+		margin-top: 0.1rem;
+		font-size: 0.13rem;
+		line-height: 0.3rem;
+		font-family: '微软雅黑';
+		background-color: #ccc;
+	}
+	#message ul{
+		color: black;font-family: '微软雅黑';
+	}
+
+	#message ul{
+		margin-bottom: 20px;
+	}
+	#message li{
+		font-size: 0.15rem;
+		line-height: 0.3rem;
+		
+	}
+
+	#lianxi{
+		float: right;
+		margin-right: 1.7rem;
+		font-family: '微软雅黑';
+	}
+	#lianxi ul{
+		width: 3rem;
+		
+	}
+	#lianxi li{
+		font-size: 0.15rem;
+		line-height: 0.3rem;
+	}
+	
+	#main{
+		/*text-align: center;*/
+	}
+	#warpl{
+		width: 100%;
+		text-align: center;
+		font-family: '微软雅黑';
+	}
+	#warpl h3{
+		text-align: center;line-height: 30px;
+	}
+	#warpl a{
+		cursor: pointer;line-height: 25px;
+		color: black;font-size: 0.15rem;
+		color: black;
+
+	}
+	#beizu{
+		font-size: 0.1rem;
+		color: red;
+	}
+	#warpr{
+		text-align: center;
+	}
+	#warpr iframe{
+		
+		width:8rem;height: 5rem;
+		
+	}
+	#jineng h3{
+		margin-top: 30px;
+		text-align: center;
+		font-family: '微软雅黑';	
+	}
+	#jineng ul{
+		width: 5rem;
+		margin: 0 auto;
+		font-size: 0.15rem;
+		line-height: 0.25rem;
+		font-family: '微软雅黑';
+	}
+	#jineng li{
+		border: 1px solid #ccc;
+		line-height: 0.3rem;
+	}
+	#exeper h3,h4{
+		text-align: center;
+		line-height: 0.4rem;
+		font-family: '微软雅黑';
+	}
+	#exeper p{
+		margin: 0 auto;
+		width: 5rem;
+		font-size: 0.15rem;
+		text-align: center;
+		line-height: 0.3rem;
+		font-family: '微软雅黑';
+	}
+	#myself h4{
+		text-align: center;
+		font-size: 0.2rem;
+		font-family: '微软雅黑';
+		font-weight: bold;
+	}
+	#myself p{
+		margin: 0 auto;
+		width: 5rem;
+		font-size: 0.15rem;
+		line-height: 0.3rem;
+		font-family: '微软雅黑';
+
+	}
+	#floot{
+		font-size: 0.2rem;
+		text-align: center;
+		line-height: 0.5rem;
+		font-family: '微软雅黑';
+	}
+	h3{
+		text-align: center;
+		font-family: '微软雅黑';
+	}
+	

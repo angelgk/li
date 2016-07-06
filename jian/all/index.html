@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#bos{
+		width: 100px;height: 100px;margin: 200px auto 0px;position: relative;left: 0;top: 0;
+		background-color: red;border-radius: 50%;
+	}
+	#bos img{
+		width: 100px;height: 100px;border-radius: 50%;
+		background-color: green
+	}
+	#bos2{
+		width: 100px;height: 100px;margin: 0px auto 0px;position: relative;left: 0;top: -100px;
+		background-color: red;border-radius: 50%;
+	}
+	#bos2 img{
+		width: 100px;height: 100px;border-radius: 50%;
+		background-color: yellow;
+	}
+	#bos3{
+		width: 100px;height: 100px;margin: 0px auto 0px;position: relative;left: 0;top: -200px;
+		background-color: red;border-radius: 50%;
+	}
+	#bos3 img{
+		width: 100px;height: 100px;border-radius: 50%;
+		background-color: red;
+	}
+</style>
+<body>
+	<div id="bos">
+		<img src="" alt="">
+	</div>
+	<div id="bos2">
+		<img src="" alt="">
+	</div>
+	<div id="bos3">
+		<img src="" alt="">
+	</div>
+</body>
+<script type="text/javascript">
+	var bos=document.getElementById("bos");
+	var bos2=document.getElementById("bos2");
+	var bos3=document.getElementById("bos3");
+
+
+
+	var a=0;
+	var a1=0;
+	var a3=0;
+
+	var bo=true;
+	var bo3=true;
+
+	function move(){
+		a+=3;
+		var b=Math.cos(a*Math.PI/180);
+		var lefts=b*200;
+		var tops=Math.sin(a*Math.PI/180)*200;
+		bos.style.left=lefts+'px';
+		bos.style.top=tops+'px';
+	}
+	function move2(){
+		a1+=3;
+		if (bo) {
+			var time3=setInterval(move2,10);
+			bo=false;
+		}
+		var b1=Math.cos(a1*Math.PI/180);
+		var lefts1=b1*200;
+		var tops1=Math.sin(a1*Math.PI/180)*200-100;
+		bos2.style.left=lefts1+'px';
+		bos2.style.top=tops1+'px';
+	}
+	function move3(){
+		a3+=3;
+		if (bo3) {
+			var time4=setInterval(move3,10);
+			bo3=false;
+		}
+		var b3=Math.cos(a3*Math.PI/180);
+		var lefts3=b3*200;
+		var tops3=Math.sin(a3*Math.PI/180)*200-200;
+		bos3.style.left=lefts3+'px';
+		bos3.style.top=tops3+'px';
+	}
+	 var time=setInterval(move,10);
+	 setTimeout(move2,400);
+	 setTimeout(move3,800);
+
+	
+</script>
+</html>
