@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#warp{width: 500px;height: 400px;border:1px solid black;background-color: yellow;margin: 50px auto;position: relative;}
+	#int{width: 50px;height: 50px;background-color: red;border-radius: 50%;position: absolute;left: 0;top: 0;}
+</style>
+<body>
+	<div id="warp">
+		<div id="int"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	var warp=document.getElementById("warp");
+	var int =document.getElementById("int");
+	var box=true;
+	var boy=true;
+	var posX=int.offsetLeft;
+	var posY=int.offsetTop;
+	var Xmax=warp.clientWidth-int.offsetWidth;
+	var Ymax=warp.clientHeight-int.offsetHeight;
+	console.log(Xmax);
+	console.log(Ymax);
+	function move(){
+			if (box) {
+				posX++;
+				if (posX>Xmax) {
+					box=false;
+				}
+			}
+			else{
+				posX--;
+				if (posX<0) {
+					box=true;
+				}
+			}
+			if (boy) {
+				posY++;
+				if (posY>Ymax) {
+					boy=false;
+				}
+			}
+			else{
+				posY--;
+				if (posY<0) {
+					boy=true;
+				}
+			}
+			int.style.top=posY+'px';
+			int.style.left=posX+'px';
+		}
+		setInterval(move,1);
+	
+</script>
+</html>
