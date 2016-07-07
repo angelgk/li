@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#main{
+		width: 343px;height: 480px;position: relative;border:10px solid black;overflow: hidden;margin: 50px auto;
+	}
+	#warp{
+		width: 686px;height: 480px;position: absolute;
+	}
+	#warp .bg{
+		width: 343px;float: left;
+	}
+
+	#left div{
+		background-image: url(down_mod.png);background-size: 100%;
+		position: absolute;width: 62px;
+	}
+	#left div:nth-child(1){
+		background-image: url(up_mod.png);
+		left: 120px;
+	}
+	#left div:nth-child(2){
+		background-image: url(up_mod.png);
+		left: 280px;
+	}
+	#left div:nth-child(3){
+		left: 120px;bottom: 0;
+	}
+	#left div:nth-child(4){
+		left: 280px;bottom: 0;
+	}
+
+
+	#right div{
+		background-image: url(down_mod.png);background-size: 100%;
+		width: 62px;height: 30px;position: absolute;
+	}
+	#right div:nth-child(1){
+		background-image: url(up_mod.png);
+		left: 464px;
+	}
+	
+	#right div:nth-child(2){
+		background-image: url(up_mod.png);
+		left: 624px;
+	}
+	#right div:nth-child(3){
+		left: 464px;bottom: 0;
+	}
+	#right div:nth-child(4){
+		left: 624px;bottom: 0;
+	}
+	.img_top{
+		position: absolute;bottom: 0px;
+	}
+	.img_bot{
+		position: absolute;top: 0px;
+	}
+	
+	#begin{
+		position: absolute;left: 100px;top: 280px;cursor: pointer;
+	}
+	#bir{
+		/*background-image: url(bird0.png);*/width: 40px;height: 26px;
+		position: absolute;left: 55px;top: 200px;display: none;/*transition: 2s;*/
+	}
+	#bir img{
+		width: 40px;height: 26px;
+	}
+	#fen{
+		color: red;font-size: 20px;position: absolute;font-weight: bold;left: 50px;
+	}
+	#end{
+		width: 221px;height: 40px;position: absolute;left: 70px;top: 180px;display: none;
+	}
+	#angin{
+		width: 236px;height: 77px;position: absolute;left: 60px;top: 230px;display: none;
+		cursor: pointer;
+	}
+	#bir2{
+		position: absolute;left: 220px;top: 200px;width: 40px;height: 29px;transition: 2s;
+	}
+	#fenban{
+		position: absolute;left: 30px;top: 40px;display: none;
+	}
+	#score{
+		width: 50px;height: 30px;position: absolute;left: 192px;top: 30px;font-size: 30px;font-weight: bold;text-align: center;
+	}
+</style>
+<body>
+	<div id="main">
+		<div id="warp">
+			<div id="left">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+
+			<div id="right">
+				<div>
+					<img src="up_pipe.png" alt="" class="img_top">
+				</div>
+				<div>
+					<img src="up_pipe.png" alt="" class="img_top">
+				</div>
+				<div>
+					<img src="down_pipe.png" alt="" class="img_bot">
+				</div>
+				<div>
+					<img src="down_pipe.png" alt="" class="img_bot">
+				</div>
+			</div>
+
+			<img src="bg.jpg" alt="" class="bg">
+			
+			<img src="bg.jpg" alt="" class="bg">
+
+			<div id="bir">
+				<img src="bird0.png" alt="">
+			</div>
+		</div>
+		<div id="end">
+			<img src="game_over.jpg" alt="">
+		</div>
+		<div id="angin">
+			<img src="head.jpg" alt="">
+		</div>
+		<div id="begin">
+			<img src="start.jpg" alt="">
+		</div>
+		<div id="fen"></div>
+		<div id="bir2">
+			<img src="up_bird0.png" alt="">
+		</div>
+		<div id="fenban">
+			<img src="message.jpg" alt="">
+			<div id="score">
+				0
+			</div>
+		</div>
+		
+	</div>
+</body>
+<script src="http://touch.code.baidu.com/touch-0.2.14.min.js"></script>
+<script type="text/javascript">
+	var main=document.getElementById("main");
+	var warp=document.getElementById("warp");
+	var begin=document.getElementById("begin");
+	var bir=document.getElementById("bir");
+	var birs=bir.getElementsByTagName("img");
+	var end=document.getElementById("end");
+	var angin=document.getElementById("angin");
+	var bir2=document.getElementById("bir2");
+	var bir_img=bir2.getElementsByTagName("img");
+
+	var left=document.getElementById("left");
+	var lefts=left.getElementsByTagName("div");
+	var right=document.getElementById("right");
+	var rights=right.getElementsByTagName("div");
+	var fen=document.getElementById("fen");
+	var score=document.getElementById("score");
+	var fenban=document.getElementById("fenban");
+
+
+	var bir2Time;
+	var time;
+	var time_up;
+	var fenTime;
+	var sco=0;
+	autoNum=0;
+	var bir_top=200;
+	var bo=true;
+	var step=0;
+	var fenshu=0;
+	var bir_le=55;
+	var bol=false;
+	var bol2=true;
+	var bolfl=true;
+
+	flTime=setInterval(function(){
+		if (bolfl) {
+			bir_img[0].src="up_bird0.png";
+			bolfl=false;
+		}
+		else{
+			bir_img[0].src="up_bird1.png";
+			bolfl=true;
+		}
+	},100)
+
+	bir2Time=setInterval(function(){
+
+		if (bol2) {
+			bir2.style.top=220+'px';
+			bol2=false;
+		}
+		else{
+			bir2.style.top=180+'px';
+			bol2=true;
+		}
+	},2000)
+
+
+
+	touch.on('#main', 'touchstart',function(ev){
+		clearInterval(time_up);
+		time_up=setInterval(up,10);
+		
+	});
+
+
+	// main.onclick=function(){
+	// 	clearInterval(time_up);
+	// 	time_up=setInterval(up,10);
+		
+	// }
+	function up(){
+		if (bol2) {
+			birs[0].src="up_bird0.png";
+			bol2=false;
+		}
+		else{
+			birs[0].src="up_bird1.png";
+			bol2=true;
+		}
+
+		bir_top-=4;
+		step++;
+		if (step>=12) {
+			step=0;
+			clearInterval(time_up);
+			bo=true;
+		}
+		bir.style.top=bir_top+"px";
+	}
+	function down(){
+		if (bol2) {
+			birs[0].src="down_bird0.png";
+			bol2=false;
+		}
+		else{
+			birs[0].src="down_bird1.png";
+			bol2=true;
+		}
+		bir_top++;
+		bir.style.top=bir_top+"px";
+	}
+
+
+	//背景图的滚动 类似飞的效果
+	function move(){
+
+		//看是否撞上了	
+		var l1=bir.offsetLeft;
+		var t1=bir.offsetTop;
+		var r1=l1+bir.offsetWidth;
+		var b1=t1+bir.offsetHeight;
+
+		if (t1>=400||t1<=0) {
+			clearInterval(time);
+			clearInterval(time_up);
+			clearInterval(fenTime);
+
+				setTimeout(function(){
+					bir.style.top=400+'px';
+					bir.style.transition="2s";
+				
+				},100)
+				setTimeout(function(){
+					fenban.style.display="block";
+					score.innerHTML=sco;
+					end.style.display="block";
+					angin.style.display="block";
+					bir.style.display="none";
+				},2000)
+				main.onclick=null;
+		}
+
+		for (var i = 0; i < lefts.length; i++) {
+			var l2=lefts[i].offsetLeft;
+			var r2=lefts[i].offsetWidth+l2;
+			var t2=lefts[i].offsetTop;
+			var b2=lefts[i].offsetHeight+t2;
+			
+			if (l1<r2 && r1>l2 && t1<b2 && b1>t2) {
+				
+				clearInterval(time);
+				clearInterval(time_up);
+				clearInterval(fenTime);
+
+				setTimeout(function(){
+					bir.style.top=400+'px';
+					bir.style.transition="2s";
+				
+				},100)
+				setTimeout(function(){
+					fenban.style.display="block";
+					score.innerHTML=sco;
+					end.style.display="block";
+					angin.style.display="block";
+					bir.style.display="none";
+				},2000)
+				main.onclick=null;
+			}
+		}
+		//创建小鸟向下掉
+		if (bo) {
+		time_up=setInterval(down,10);
+		bo=false;
+		}
+		//创建背景图滚动
+		autoNum++;
+		bir_le++;
+
+		if (autoNum==343) {
+			bol=true;
+			autoNum=0;
+			bir_le=55;
+			left.innerHTML=right.innerHTML;
+			for (var i = 0; i < rights.length-2; i++) {
+				h=fnRand();
+				rights[i].style.height=h+"px";
+				h=350-h;
+				rights[i+2].style.height=h+'px';
+			}
+		}
+		bir.style.left=bir_le+'px';
+		warp.style.left=-autoNum+'px';
+	}
+
+	//点击开始
+	begin.addEventListener("click",beg,true);
+	touch.on('#begin', 'touchstart', beg);
+
+
+	function beg(e){
+		     if(event.preventDefault)
+        {
+        event.preventDefault();
+            }
+            else
+             {
+        event.returnValue=false;
+            }
+		var e=e||window.event;
+		e.stopPropagation();
+		bir2.style.display="none";
+		begin.style.display="none";
+		bir.style.display="block";
+		clearInterval(flTime);
+		clearInterval(bir2Time);
+	
+		var h=0;
+		time=setInterval(move,10);
+		fenTime=setInterval(defen, 1000);
+
+		for (var i = 0; i < rights.length-2; i++) {
+			h=fnRand();
+			rights[i].style.height=h+"px";
+			h=350-h;
+			rights[i+2].style.height=h+'px';
+		}
+	}
+	//这里是算坚持了多少秒的
+	function defen(){
+		sco++;
+		fen.innerHTML=sco;
+	}
+	//这里是拿到随机的高度的
+	function fnRand(){
+		var t=Math.random();
+		t=t*(280-60)+60;
+		t=Math.round(t);
+		return t;
+	}	
+	// 再一次游戏的按钮
+	touch.on('#angin', 'touchstart',function(){
+		for (var i = 0; i < lefts.length; i++) {
+			lefts[i].style.height=0+'px';
+		}
+		step=0;
+		clearInterval(time_up);
+		bo=true;
+		fenban.style.display="none";
+		bir.style.transition="0s";
+		end.style.display="none";
+		angin.style.display="none";
+		warp.style.left=0+"px";
+		bir.style.display="block";
+		bir_top=200;
+		bir.style.top='200px';
+
+		autoNum=0;
+		bir_le=55;
+		sco=0;
+		bo=true;
+
+		touch.on('#main', 'touchstart',function(ev){
+		clearInterval(time_up);
+		time_up=setInterval(up,10);
+		
+	});
+		// main.onclick=function(){
+		// clearInterval(time_up);
+		// time_up=setInterval(up,10);
+		// }
+		beg();
+	});  
+</script>
+</html>

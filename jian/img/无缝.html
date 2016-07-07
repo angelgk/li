@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#main{
+		width: 343px;height: 480px;overflow: hidden;position: relative;margin: 0px auto;
+	}
+	#warp{
+		width: 686px;height: 480px;position: absolute;
+	}
+	#warp img{
+		float: left; 
+	}
+
+	#left div{
+		width: 60px;height: 30px;background-color: red;position: absolute;left: 60px;top: 0px;
+	}
+	#right div{
+		width: 60px;height: 30px;background-color: red;position: absolute;left: 403px;top: 0px;
+	}
+</style>
+<body>
+	<div id="main">
+		<div id="warp">
+			<div id="left">
+				<div id="l1">
+				</div>
+			</div>
+			<div id="right">
+				<div id="r1">
+				</div>
+			</div>
+			<img src="bg.jpg" alt="">
+			<img src="bg.jpg" alt="">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">	
+var warp=document.getElementById("warp");
+var left=document.getElementById("left");
+var right=document.getElementById("right");
+var r1=document.getElementById("r1");
+var l1=document.getElementById("l1");
+var autoNum=0;
+
+var time=setInterval(function(){
+	autoNum++;
+	if (autoNum==343) {
+		var t=fnRand();
+		autoNum=0;
+		left.innerHTML=right.innerHTML;
+		warp.style.left=0+'px';
+		r1.style.height=t+'px';
+
+	}
+	warp.style.left=-autoNum+'px';
+},3)
+
+
+function fnRand(){
+		var t=Math.random();
+		t=t*(380-60)+60;
+		t=Math.round(t);
+		return t;
+	}
+</script>
+</html>
